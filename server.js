@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const hospitalRouter = require('./hospitalRoutes')
 
 const app = express();
 
@@ -27,3 +28,5 @@ const port = 3333;
 app.listen(port, () => {
   console.log(`App Running in port ${port}`);
 });
+
+app.use('/api/v1/hospitals', hospitalRouter);
