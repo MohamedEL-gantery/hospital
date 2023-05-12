@@ -26,6 +26,16 @@ mongoose.connect(
   }
 );
 
+/*async function connect() {
+  let connection = await mongoose.connect('mongodb://0.0.0.0:27017/hospital');
+  if (!connection) {
+    console.log('Error');
+  } else {
+    console.log('DB Success...');
+  }
+}
+connect();*/
+
 app.use('/api/v1/hospitals', hospitalRouter);
 app.use('/api/v1/users', userRouter);
 

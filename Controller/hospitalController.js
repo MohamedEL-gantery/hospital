@@ -1,5 +1,4 @@
 const Hospital = require('../models/hospitalModel');
-const db = require('mongodb');
 
 exports.createHospital = async (req, res) => {
   try {
@@ -78,23 +77,30 @@ exports.updateHospital = async (req, res) => {
 };
 
 exports.getDistance = async (req, res) => {
-  let maxDistance = req.query.maxDistance || 50000000;
-  const data = await Hospital.find({
-    location: {
-      $near: {
-        $geometry: {
-          type: 'Point',
-          coordinates: [req.query.long, req.query.lat],
+  try {
+    let maxDistance = req.query.maxDistance || 5000;
+    const data = await Hospital.find({
+      location: {
+        $near: {
+          $geometry: {
+            type: 'Point',
+            coordinates: [req.query.long, req.query.lat],
+          },
+          $maxDistance: maxDistance,
         },
-        $maxDistance: maxDistance,
       },
-    },
-  });
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      data,
-    },
-  });
+    });
+    res.status(200).json({
+      status: 'success',
+      results: data.length,
+      data: {
+        data,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
 };

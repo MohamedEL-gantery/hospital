@@ -4,7 +4,7 @@ const hospitalController = require('../Controller/hospitalController');
 const router = express.Router();
 
 router
-  .route('/')
+  .route('/add')
   .get(hospitalController.getAllHospitals)
   .post(hospitalController.createHospital);
 
@@ -13,5 +13,5 @@ router
   .get(hospitalController.getHospital)
   .patch(hospitalController.updateHospital);
 
-router.get('/distances ', hospitalController.getDistance);
+router.get('/', hospitalController.getDistance);
 module.exports = router;
