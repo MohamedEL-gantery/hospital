@@ -1,6 +1,8 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const hospitalRouter = require('./hospitalRoutes')
+const express = require('express');
+const mongoose = require('mongoose');
+//Route
+const hospitalRouter = require('./routes/hospitalRoutes');
+const userRouter = require('./routes/userRoutes');
 
 const app = express();
 
@@ -8,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 mongoose.connect(
-  "mongodb://0.0.0.0:27017/hospital",
+  'mongodb://0.0.0.0:27017/hospital',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -17,16 +19,17 @@ mongoose.connect(
   },
   (err) => {
     if (!err) {
-      console.log("DB Success...");
+      console.log('DB Success...');
     } else {
       console.log(err);
     }
   }
 );
 
+app.use('/api/v1/hospitals', hospitalRouter);
+app.use('/api/v1/users', userRouter);
+
 const port = 3333;
 app.listen(port, () => {
   console.log(`App Running in port ${port}`);
 });
-
-app.use('/api/v1/hospitals', hospitalRouter);
