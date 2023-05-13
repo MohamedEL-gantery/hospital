@@ -17,3 +17,22 @@ exports.createUser = async (req, res) => {
     });
   }
 };
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    const allUsers = await User.find();
+
+    res.status(200).json({
+      status: 'success',
+      results: allUsers.length,
+      data: {
+        allUsers,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
+};

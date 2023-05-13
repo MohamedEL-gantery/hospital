@@ -53,13 +53,19 @@ const hospitalSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
+    timestamps: true,
   }
 );
 
 hospitalSchema.index({ location: '2dsphere' });
+//virtual populate
+hospitalSchema.virtual('ratings', {
+  ref: 'Rating',
+  foreignField: 'hospital',
+  localField: '_id',
+});
 
 const Hospital = mongoose.model('Hospital', hospitalSchema);
 

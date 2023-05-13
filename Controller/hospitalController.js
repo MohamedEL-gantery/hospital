@@ -39,7 +39,7 @@ exports.getAllHospitals = async (req, res) => {
 
 exports.getHospital = async (req, res) => {
   try {
-    const hospital = await Hospital.findById(req.params.id);
+    const hospital = await Hospital.findById(req.params.id).populate('ratings');
 
     res.status(200).json({
       status: 'success',
