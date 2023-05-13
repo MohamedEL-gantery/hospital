@@ -1,5 +1,5 @@
 const express = require('express');
-const ratingController = require('./../Controller/ratingController');
+const ratingController = require('../Controller/ratingController');
 
 const router = express.Router({ mergeParams: true });
 

@@ -24,9 +24,9 @@ const ratingSchema = mongoose.Schema(
     },
   },
   {
+    timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-    timestamps: true,
   }
 );
 
@@ -62,7 +62,7 @@ ratingSchema.statics.calcAverageRating = async function (hospitalId) {
   } else {
     await Hospital.findByIdAndUpdate(hospitalId, {
       ratingsQuantity: 0,
-      ratingsAverage: 4.5,
+      ratingsAverage: 0,
     });
   }
 };

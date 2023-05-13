@@ -1,4 +1,4 @@
-const Rating = require('./../models/RatingModel');
+const Rating = require('../models/ratingModel');
 
 exports.createRating = async (req, res) => {
   try {
