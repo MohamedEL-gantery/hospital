@@ -104,3 +104,21 @@ exports.getDistance = async (req, res) => {
     });
   }
 };
+
+exports.getArea = async (req, res) => {
+  try {
+    const data = await Hospital.find({ area: req.query.area });
+    res.status(200).json({
+      status: 'success',
+      results: data.length,
+      data: {
+        data,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
+};

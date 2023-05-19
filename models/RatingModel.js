@@ -70,15 +70,5 @@ ratingSchema.post('save', function () {
   this.constructor.calcAverageRating(this.hospital);
 });
 
-//findbyIdAndUpdate
-//findbyIdAndDelete
-// ratingSchema.pre(/^findOneAnd/, async function (next) {
-//   this.r = await this.findOne(); //pre not post because when use post we cannot access query
-//   console.log(this.r);
-// });
-
-// ratingSchema.post(/^findOneAnd/, async function (next) {
-//   await this.r.constructor.calcAverageRating(this.r.hospital);
-// });
 const Rating = mongoose.model('Rating', ratingSchema);
 module.exports = Rating;

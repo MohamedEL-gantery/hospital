@@ -15,6 +15,8 @@ router
 
 router.get('/', hospitalController.getDistance);
 
+router.get('/area/near', hospitalController.getArea);
+
 router.use('/:id/rating', ratingRouter);
 
 module.exports = router;

@@ -8,6 +8,4 @@ router
   .get(ratingController.getAllRatings)
   .post(ratingController.createRating);
 
-router.delete('/:id', ratingController.deleteRating);
-
 module.exports = router;
